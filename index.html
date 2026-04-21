@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>RX__DZ · نافذة ذكية + Live Reply</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 /* ===== الأساسيات ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; width: 100%; overflow: hidden; background: #0a0e15; color: #eef4ff; font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif; }
+html, body { height: 100%; width: 100%; overflow: hidden; background: #0a0e15; color: #eef4ff; font-family: 'Tajawal', sans-serif; }
 body { display: flex; flex-direction: column; position: relative; }
 
 /* ===== إطار خارجي متوهج ===== */
@@ -20,8 +21,8 @@ body { display: flex; flex-direction: column; position: relative; }
 .floater { position: fixed; bottom: -30px; font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 30px; pointer-events: none; z-index: 2; color: rgba(255,255,255,0.9); background: rgba(0,20,40,0.7); backdrop-filter: blur(6px); border: 1px solid rgba(0,150,255,0.3); box-shadow: 0 0 12px rgba(0,100,200,0.2); animation: floatUp linear forwards; white-space: nowrap; }
 @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh); opacity: 0; } }
 
-/* ===== شريط تمرير افتراضي ===== */
-::-webkit-scrollbar { width: 5px; height: 5px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 10px; } ::-webkit-scrollbar-thumb { background: #0077dd; border-radius: 10px; } * { scrollbar-width: thin; scrollbar-color: #0077dd rgba(0,0,0,0.2); }
+/* ===== شريط تمرير ===== */
+::-webkit-scrollbar { width: 5px; height: 5px; } ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); } ::-webkit-scrollbar-thumb { background: #0077dd; border-radius: 10px; }
 
 /* ===== الحاوية الرئيسية ===== */
 .app-container { position: relative; z-index: 10; flex: 1; display: flex; flex-direction: column; overflow: hidden; background: transparent; min-height: 0; }
@@ -29,25 +30,22 @@ body { display: flex; flex-direction: column; position: relative; }
 /* ---------- شاشة تسجيل الدخول ---------- */
 .login-screen { position: fixed; inset: 0; z-index: 5000; display: flex; align-items: center; justify-content: center; background: rgba(5,8,15,0.9); backdrop-filter: blur(16px); opacity: 1; pointer-events: all; transition: opacity 0.35s; padding: 16px; }
 .login-screen.hidden { opacity: 0; pointer-events: none; }
-.login-card { width: 100%; max-width: 420px; background: rgba(18,25,40,0.8); backdrop-filter: blur(20px); border: 1px solid rgba(0,150,255,0.35); border-radius: 36px; padding: clamp(24px,6vw,36px) clamp(20px,5vw,28px); box-shadow: 0 25px 50px -8px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,150,255,0.1); }
+.login-card { width: 100%; max-width: 420px; background: rgba(18,25,40,0.8); backdrop-filter: blur(20px); border: 1px solid rgba(0,150,255,0.35); border-radius: 36px; padding: 24px 20px; box-shadow: 0 25px 50px -8px rgba(0,0,0,0.8); }
 .login-header { text-align: center; margin-bottom: 32px; }
-.login-header h2 { font-size: clamp(32px,10vw,44px); font-weight: 900; background: linear-gradient(135deg,#88ccff,#ffffff,#88ccff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 20px #0099ff; letter-spacing: 2px; margin-bottom: 8px; }
+.login-header h2 { font-size: 44px; font-weight: 900; background: linear-gradient(135deg,#88ccff,#fff,#88ccff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 20px #0099ff; margin-bottom: 8px; }
 .login-header p { color: #b0c7e9; font-size: 15px; }
 .login-form { display: flex; flex-direction: column; gap: 20px; }
 .input-group { display: flex; flex-direction: column; gap: 6px; }
-.input-group label { font-size: 15px; font-weight: 500; color: #b8cef0; margin-right: 6px; }
+.input-group label { font-size: 15px; font-weight: 500; color: #b8cef0; }
 .input-field { position: relative; display: flex; align-items: center; }
-.input-field input { width: 100%; background: rgba(0,0,0,0.35); border: 1.8px solid #2a4055; border-radius: 20px; padding: 16px 50px 16px 18px; font-size: 16px; color: #fff; outline: none; transition: border 0.2s, box-shadow 0.2s; font-family: 'Tajawal', sans-serif; }
+.input-field input { width: 100%; background: rgba(0,0,0,0.35); border: 1.8px solid #2a4055; border-radius: 20px; padding: 16px 50px 16px 18px; font-size: 16px; color: #fff; outline: none; font-family: inherit; }
 .input-field input:focus { border-color: #00aaff; box-shadow: 0 0 0 4px rgba(0,170,255,0.15); }
 .input-field .input-icon { position: absolute; left: 18px; color: #7a9bcb; font-size: 20px; pointer-events: none; }
-.toggle-password { position: absolute; right: 56px; background: none; border: none; color: #aac4e5; font-size: 20px; cursor: pointer; padding: 6px; transition: color 0.2s; z-index: 2; }
-.toggle-password:hover { color: #00aaff; }
+.toggle-password { position: absolute; right: 56px; background: none; border: none; color: #aac4e5; font-size: 20px; cursor: pointer; padding: 6px; }
 .login-message { min-height: 24px; font-size: 14px; color: #ff7788; text-align: center; }
 .lockout-timer { text-align: center; font-size: 15px; font-weight: 600; color: #ffaa33; }
-.login-btn { background: linear-gradient(145deg,#0055bb,#0088ee); border: none; border-radius: 60px; padding: 16px 20px; font-size: 18px; font-weight: 700; color: white; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 20px rgba(0,100,200,0.3); border: 1px solid rgba(255,255,255,0.15); margin-top: 8px; }
-.login-btn:hover { background: linear-gradient(145deg,#0066cc,#0099ff); transform: scale(1.01); }
-.login-btn:active { transform: scale(0.98); }
-.login-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.login-btn { background: linear-gradient(145deg,#0055bb,#0088ee); border: none; border-radius: 60px; padding: 16px; font-size: 18px; font-weight: 700; color: white; cursor: pointer; box-shadow: 0 8px 20px rgba(0,100,200,0.3); margin-top: 8px; }
+.login-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .login-footer { margin-top: 28px; text-align: center; color: #8aa0c0; font-size: 13px; border-top: 1px dashed #2a4a6a; padding-top: 18px; }
 
 /* ---------- التطبيق الرئيسي ---------- */
@@ -55,36 +53,21 @@ body { display: flex; flex-direction: column; position: relative; }
 .page { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 18px 14px 85px; display: none; scroll-behavior: smooth; }
 .page.active { display: block; }
 
-/* --- صفحة المحادثة (تم توسيعها لتشمل Live Reply) --- */
+/* --- صفحة المحادثة --- */
 .chat-header { text-align: center; margin-bottom: 22px; }
-.chat-header h1 { font-size: clamp(32px,12vw,52px); font-weight: 900; color: #fff; text-shadow: 0 0 20px #0077ff; }
+.chat-header h1 { font-size: 48px; font-weight: 900; color: #fff; text-shadow: 0 0 20px #0077ff; }
 .chat-header p { color: #a0b5d0; font-size: 15px; }
 .data-card { background: rgba(15,22,36,0.7); backdrop-filter: blur(12px); border: 1px solid #2a4a7a; border-radius: 28px; padding: 22px 20px; margin-bottom: 24px; }
 .info-row { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 18px; }
-.rainbow { font-weight: bold; font-family: monospace; background: linear-gradient(90deg,#00aaff,#66ddff,#00ffff,#66ddff,#00aaff); background-size: 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: rainbowMove 3s linear infinite; }
+.rainbow { font-weight: bold; background: linear-gradient(90deg,#00aaff,#66ddff,#00ffff,#66ddff,#00aaff); background-size: 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: rainbowMove 3s linear infinite; }
 @keyframes rainbowMove { to { background-position: 200%; } }
 
-/* منطقة الردود (Live Reply) */
+/* قسم Live Reply */
 .live-reply-section {
-  background: rgba(15,22,36,0.5);
-  backdrop-filter: blur(12px);
-  border: 1px solid #2a4a7a;
-  border-radius: 28px;
-  padding: 20px 18px;
-  margin-bottom: 24px;
+  background: rgba(15,22,36,0.5); backdrop-filter: blur(12px);
+  border: 1px solid #2a4a7a; border-radius: 28px; padding: 20px 18px; margin-bottom: 24px;
 }
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #aad0ff;
-}
-.section-header .icon { font-size: 24px; }
-
-/* pills */
+.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; font-size: 18px; font-weight: 700; color: #aad0ff; }
 .pills { display: flex; gap: 10px; margin-bottom: 18px; }
 .pill { flex: 1; display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: rgba(0,20,40,0.4); border: 1px solid #2a5a8a; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
 .pill.active { border-color: #00aaff; background: rgba(0,150,255,0.15); box-shadow: 0 0 15px rgba(0,150,255,0.2); }
@@ -94,41 +77,21 @@ body { display: flex; flex-direction: column; position: relative; }
 .pill-value { font-size: 13px; font-weight: 700; }
 .pill.active .pill-value { color: #64d2ff; }
 
-/* textarea card */
 .textarea-card { background: rgba(0,0,0,0.2); border: 1px solid #2a5a8a; border-radius: 22px; overflow: hidden; margin-bottom: 18px; }
 .textarea-topbar { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #2a5a8a; background: rgba(0,0,0,0.15); color: #aac4e5; font-size: 13px; }
 .speaking-bar { display: none; align-items: center; justify-content: center; gap: 4px; padding: 8px; }
 .speaking-bar.visible { display: flex; }
 .bar { width: 3px; border-radius: 10px; background: #00aaff; animation: barWave 0.8s infinite; }
-.bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-.bar:nth-child(2) { height: 16px; animation-delay: 0.1s; }
-.bar:nth-child(3) { height: 12px; animation-delay: 0.2s; }
-.bar:nth-child(4) { height: 18px; animation-delay: 0.15s; }
-.bar:nth-child(5) { height: 10px; animation-delay: 0.05s; }
+.bar:nth-child(1) { height: 8px; animation-delay: 0s; } .bar:nth-child(2) { height: 16px; animation-delay: 0.1s; } .bar:nth-child(3) { height: 12px; animation-delay: 0.2s; } .bar:nth-child(4) { height: 18px; animation-delay: 0.15s; } .bar:nth-child(5) { height: 10px; animation-delay: 0.05s; }
 @keyframes barWave { 0%,100% { transform: scaleY(0.5); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
 
-#liveTextarea {
-  width: 100%;
-  min-height: 140px;
-  background: transparent;
-  border: none;
-  outline: none;
-  resize: none;
-  color: #fff;
-  font-family: 'Tajawal', sans-serif;
-  font-size: 20px;
-  line-height: 1.7;
-  padding: 16px;
-  direction: rtl;
-  caret-color: #00aaff;
-}
+#liveTextarea { width: 100%; min-height: 140px; background: transparent; border: none; outline: none; resize: none; color: #fff; font-family: inherit; font-size: 20px; line-height: 1.7; padding: 16px; direction: rtl; caret-color: #00aaff; }
 #liveTextarea::placeholder { color: #5a7a9a; }
 
 .font-ctrl-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-top: 1px solid #2a5a8a; background: rgba(0,0,0,0.1); }
-.font-ctrl-row label { font-size: 13px; color: #aac4e5; display: flex; align-items: center; gap: 6px; }
+.font-ctrl-row label { font-size: 13px; color: #aac4e5; }
 .font-size-display { color: #00aaff; font-weight: 700; min-width: 40px; text-align: center; }
 
-/* action buttons */
 .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .btn-live { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 20px; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s; border: 1px solid; background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); }
 .btn-speak-live { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(0,150,255,0.2), rgba(100,210,255,0.1)); border-color: #00aaff; color: #00aaff; }
@@ -137,7 +100,6 @@ body { display: flex; flex-direction: column; position: relative; }
 .btn-clear-live { border-color: #5a3a4a; color: #ff7a8a; }
 .btn-stop-live { border-color: #5a5a2a; color: #ffcc55; }
 
-/* collapsible sections */
 .collapsible { background: rgba(0,0,0,0.2); border: 1px solid #2a5a8a; border-radius: 22px; margin-bottom: 16px; overflow: hidden; }
 .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; background: rgba(0,0,0,0.15); }
 .collapsible-title { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #c0d8ff; }
@@ -146,58 +108,53 @@ body { display: flex; flex-direction: column; position: relative; }
 .collapsible-body.open { max-height: 600px; }
 .collapsible-inner { padding: 18px; }
 
-/* shortcuts list */
 .shortcut-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
 .shortcut-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: rgba(0,20,40,0.5); border: 1px solid #2a5a8a; border-radius: 16px; font-size: 13px; }
 .shortcut-key { background: rgba(0,150,255,0.15); color: #00aaff; padding: 4px 10px; border-radius: 12px; font-weight: 700; }
 .shortcut-arrow { color: #6a8ab0; }
 .shortcut-value { color: #b0c7e9; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .shortcut-del { background: none; border: none; color: #ff7a8a; font-size: 18px; cursor: pointer; opacity: 0.6; }
-.shortcut-del:hover { opacity: 1; }
 
 .add-shortcut { display: flex; flex-direction: column; gap: 10px; }
-.add-shortcut input { background: rgba(0,0,0,0.3); border: 1px solid #2a5a8a; border-radius: 18px; padding: 12px 16px; color: #fff; font-family: 'Tajawal'; outline: none; }
+.add-shortcut input { background: rgba(0,0,0,0.3); border: 1px solid #2a5a8a; border-radius: 18px; padding: 12px 16px; color: #fff; font-family: inherit; outline: none; }
 .add-shortcut input:focus { border-color: #00aaff; }
 .btn-add-shortcut { align-self: flex-start; background: rgba(100,210,255,0.15); border: 1px solid #00aaff; color: #00aaff; padding: 10px 24px; border-radius: 40px; font-weight: 700; cursor: pointer; }
 
-/* voice settings grid */
 .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .voice-row { display: flex; flex-direction: column; gap: 6px; }
 .voice-row label { font-size: 12px; color: #aac4e5; display: flex; justify-content: space-between; }
 .voice-row span { color: #00aaff; }
-.voice-select { grid-column: 1 / -1; background: rgba(0,0,0,0.3); border: 1px solid #2a5a8a; border-radius: 18px; padding: 12px; color: #fff; font-family: 'Tajawal'; outline: none; }
+.voice-select { grid-column: 1 / -1; background: rgba(0,0,0,0.3); border: 1px solid #2a5a8a; border-radius: 18px; padding: 12px; color: #fff; font-family: inherit; outline: none; }
 .voice-select option { background: #121b30; }
 
-/* --- صفحة المعرض (بدون تغيير) --- */
+/* --- صفحة المعرض --- */
 .gallery-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; background: rgba(10,18,30,0.7); backdrop-filter: blur(12px); padding: 12px 20px; border-radius: 60px; border: 1px solid #2a5a8a; }
-.gallery-title { font-size: clamp(24px,8vw,36px); font-weight: 900; background: linear-gradient(135deg,#66ccff,#ffffff,#88ddff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 20px #0088ff; animation: softGlow 2.5s infinite alternate; }
-@keyframes softGlow { from { text-shadow: 0 0 10px #0088ff; } to { text-shadow: 0 0 24px #00aaff; } }
-.gallery-badge { background: rgba(14, 26, 42, 0.4); backdrop-filter: blur(4px); border: 1px solid rgba(42, 106, 154, 0.5); padding: 8px 18px; border-radius: 40px; font-size: 14px; color: #aac9ff; font-weight: 600; }
+.gallery-title { font-size: 36px; font-weight: 900; background: linear-gradient(135deg,#66ccff,#fff,#88ddff); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 20px #0088ff; }
+.gallery-badge { background: rgba(14,26,42,0.4); backdrop-filter: blur(4px); border: 1px solid rgba(42,106,154,0.5); padding: 8px 18px; border-radius: 40px; font-size: 14px; color: #aac9ff; }
 .empty-state { text-align: center; padding: 50px 20px; }
 .empty-icon { font-size: 70px; margin-bottom: 20px; opacity: 0.7; }
 .empty-title { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
 .empty-sub { color: #9ab0d0; font-size: 15px; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-.card { background: rgba(20,30,48,0.8); backdrop-filter: blur(8px); border-radius: 22px; overflow: hidden; cursor: pointer; border: none; transition: all 0.2s; position: relative; }
+.card { background: rgba(20,30,48,0.8); backdrop-filter: blur(8px); border-radius: 22px; overflow: hidden; cursor: pointer; position: relative; }
 .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.5); }
 .card-thumb { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #0e1a2a; }
-.card-body { padding: 6px 8px 8px; background: rgba(0,0,0,0.03); backdrop-filter: blur(2px); border: none; }
-.card-name { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: rgba(255,255,255,0.85); text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-.card-meta { font-size: 11px; color: rgba(200,220,255,0.7); margin-top: 2px; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-.card-badge { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.08); backdrop-filter: blur(4px); border: none; border-radius: 30px; padding: 2px 8px; font-size: 10px; font-weight: 500; color: rgba(220,240,255,0.8); text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.card-del { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 30px; background: rgba(200,40,60,0.08); backdrop-filter: blur(4px); border: none; color: rgba(255,180,190,0.7); font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; opacity: 0.4; }
-.card-del:hover { opacity: 0.9; background: rgba(220,60,80,0.2); color: #fff; }
+.card-body { padding: 6px 8px 8px; }
+.card-name { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff; }
+.card-meta { font-size: 11px; color: rgba(200,220,255,0.7); }
+.card-badge { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); padding: 2px 8px; border-radius: 30px; font-size: 10px; color: #fff; }
+.card-del { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 30px; background: rgba(200,40,60,0.2); backdrop-filter: blur(4px); border: none; color: #ffb0bb; font-size: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.6; }
+.card-del:hover { opacity: 1; background: rgba(220,60,80,0.4); }
 
-.fab-create { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: rgba(0,100,200,0.12); backdrop-filter: blur(12px); border: none; border-radius: 60px; padding: 12px 24px; color: white; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; z-index: 400; transition: background 0.2s, transform 0.2s; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.fab-create:active { background: rgba(0,120,220,0.25); transform: translateX(-50%) scale(0.97); }
+.fab-create { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: rgba(0,100,200,0.12); backdrop-filter: blur(12px); border: none; border-radius: 60px; padding: 12px 24px; color: white; font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; z-index: 400; white-space: nowrap; }
 
-/* --- عارض الصور (بدون تغيير) --- */
+/* --- عارض الصور --- */
 .viewer { position: fixed; inset: 0; z-index: 2500; background: #000; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: 0.25s; }
 .viewer.open { opacity: 1; pointer-events: all; }
 .v-header { position: absolute; top: 0; left: 0; right: 0; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, #000000dd, transparent); z-index: 10; }
 .v-close { width: 48px; height: 48px; border-radius: 40px; background: transparent; border: none; color: white; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .v-title { color: white; font-size: 18px; font-weight: 600; }
-.v-counter { background: transparent; border: none; padding: 6px 18px; font-size: 15px; color: #aad0ff; }
+.v-counter { padding: 6px 18px; font-size: 15px; color: #aad0ff; }
 .v-stage { flex: 1; display: flex; align-items: center; justify-content: center; touch-action: pan-y; }
 .v-img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .v-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 18px; display: flex; gap: 12px; background: linear-gradient(to top, #000000dd, transparent); }
@@ -207,55 +164,48 @@ body { display: flex; flex-direction: column; position: relative; }
 .v-thumb { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 2px solid transparent; cursor: pointer; }
 .v-thumb.active { border-color: #00aaff; }
 
-/* --- حوار إنشاء مجموعة (بدون تغيير) --- */
+/* --- مودال إنشاء مجموعة --- */
 .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: #000000cc; backdrop-filter: blur(8px); display: flex; align-items: flex-end; opacity: 0; pointer-events: none; transition: 0.25s; }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
-.modal-sheet { width: 100%; max-height: 85vh; background: #121e30; border-radius: 32px 32px 0 0; padding: 22px 20px 35px; border-top: 2px solid #0088ff; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.2,0.9,0.4,1); display: flex; flex-direction: column; overflow-y: auto; }
+.modal-sheet { width: 100%; max-height: 85vh; background: #121e30; border-radius: 32px 32px 0 0; padding: 22px 20px 35px; border-top: 2px solid #0088ff; transform: translateY(100%); transition: transform 0.3s; display: flex; flex-direction: column; overflow-y: auto; }
 .modal-overlay.open .modal-sheet { transform: translateY(0); }
 .modal-handle { width: 50px; height: 5px; background: #4a6a8a; border-radius: 10px; margin: 0 auto 20px; }
 .modal-title { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 20px; }
 .group-name-input { width: 100%; background: #0a1420; border: 1.5px solid #2a5a8a; border-radius: 20px; padding: 16px 18px; color: white; font-size: 17px; margin-bottom: 18px; outline: none; }
-.group-name-input:focus { border-color: #00aaff; }
 .url-input-area { display: flex; gap: 8px; margin-bottom: 16px; }
 .url-input { flex: 1; background: #0a1420; border: 1.5px solid #2a5a8a; border-radius: 20px; padding: 14px 16px; color: white; font-size: 15px; outline: none; }
-.url-input:focus { border-color: #00aaff; }
-.url-add-btn { background: #1a2a40; border: 1.5px solid #2a8aff; border-radius: 20px; padding: 0 18px; color: #aad0ff; font-weight: 600; cursor: pointer; transition: 0.2s; }
-.url-add-btn:active { background: #2a3a50; }
+.url-add-btn { background: #1a2a40; border: 1.5px solid #2a8aff; border-radius: 20px; padding: 0 18px; color: #aad0ff; font-weight: 600; cursor: pointer; }
+.drop-zone { border: 2px dashed #2a5a8a; border-radius: 20px; padding: 16px; margin: 10px 0 16px; text-align: center; background: rgba(0,0,0,0.1); color: #8aa0c0; font-size: 14px; }
+.drop-zone.drag-over { background: rgba(0,150,255,0.15); border-color: #00aaff; color: #aad0ff; }
 .preview-container { flex: 1; overflow-y: auto; max-height: 200px; margin-bottom: 16px; }
 .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); gap: 10px; }
 .preview-item { position: relative; aspect-ratio: 1/1; border-radius: 14px; overflow: hidden; border: 1.5px solid #2a6a9a; }
 .preview-item img { width: 100%; height: 100%; object-fit: cover; }
 .preview-del { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 30px; background: #1a0e14cc; color: #ff7a8a; border: 1px solid #ff5a6e; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; }
 .empty-preview-msg { text-align: center; color: #8aa0c0; padding: 25px; }
-.drop-zone { border: 2px dashed #2a5a8a; border-radius: 20px; padding: 16px; margin: 10px 0 16px; text-align: center; background: rgba(0,0,0,0.1); color: #8aa0c0; font-size: 14px; }
-.drop-zone.drag-over { background: rgba(0,150,255,0.15); border-color: #00aaff; color: #aad0ff; }
 .modal-actions { display: flex; gap: 14px; margin-top: 8px; }
-.btn { flex: 1; padding: 18px 10px; border-radius: 60px; font-weight: 700; font-size: 18px; border: none; cursor: pointer; transition: 0.15s; }
+.btn { flex: 1; padding: 18px; border-radius: 60px; font-weight: 700; font-size: 18px; border: none; cursor: pointer; }
 .btn-primary { background: linear-gradient(145deg,#0066cc,#0099ff); color: white; }
 .btn-secondary { background: #0a1420; border: 1.5px solid #3a6a9a; color: #bbd5ff; }
 
-/* --- شريط التنقل السفلي --- */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 75px; background: rgba(8,16,28,0.5); backdrop-filter: blur(24px); border-top: 1.5px solid rgba(42,90,138,0.4); display: flex; align-items: center; justify-content: space-around; z-index: 500; transition: transform 0.3s; padding-bottom: env(safe-area-inset-bottom); }
+/* --- شريط التنقل --- */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 75px; background: rgba(8,16,28,0.5); backdrop-filter: blur(24px); border-top: 1.5px solid rgba(42,90,138,0.4); display: flex; align-items: center; justify-content: space-around; z-index: 500; padding-bottom: env(safe-area-inset-bottom); }
 .bottom-nav.hidden { transform: translateY(100%); }
-.nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; height: 100%; color: rgba(224,240,255,0.75); font-size: 14px; font-weight: 600; background: transparent; border: none; cursor: pointer; gap: 6px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; height: 100%; color: rgba(224,240,255,0.75); font-size: 14px; font-weight: 600; background: transparent; border: none; cursor: pointer; gap: 6px; }
 .nav-item.active { color: #3a9aff; }
 .nav-item span { font-size: 28px; }
 
-.toggle-nav-btn { position: fixed; bottom: 90px; right: 18px; width: 36px; height: 36px; border-radius: 30px; background: rgba(0,0,0,0.15); backdrop-filter: blur(4px); border: 1px solid rgba(150,200,255,0.25); color: #ccddff; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 600; opacity: 0.6; transition: all 0.2s; }
-.toggle-nav-btn:hover { opacity: 0.9; border-color: #00aaff; color: #ffffff; }
+.toggle-nav-btn { position: fixed; bottom: 90px; right: 18px; width: 36px; height: 36px; border-radius: 30px; background: rgba(0,0,0,0.15); backdrop-filter: blur(4px); border: 1px solid rgba(150,200,255,0.25); color: #ccddff; font-size: 18px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 600; opacity: 0.6; }
 
 /* توست */
 #toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: rgba(18,30,48,0.8); backdrop-filter: blur(8px); border: 1.5px solid #00aaff; border-radius: 60px; padding: 12px 28px; color: white; font-weight: 600; z-index: 9999; opacity: 0; transition: 0.2s; white-space: nowrap; }
 #toast.on { opacity: 1; }
 
-/* شريط التقدم */
 #loader { position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 9998; background: linear-gradient(90deg,#0088ff,#66ddff,#0088ff); box-shadow: 0 0 15px #00aaff; transition: width 0.25s; }
 
-/* شريط تمرير سريع مخصص */
 .custom-scrollbar { position: fixed; top: 0; right: 0; width: 10px; height: 100%; z-index: 700; pointer-events: none; opacity: 0; transition: opacity 0.25s; }
 .custom-scrollbar.visible { opacity: 1; pointer-events: auto; }
-.scrollbar-thumb { position: absolute; right: 2px; width: 6px; height: 50px; background: #3a9affcc; backdrop-filter: blur(4px); border-radius: 20px; box-shadow: 0 0 18px #0088ff; border: 1px solid #aad0ff; cursor: pointer; transition: width 0.1s, background 0.1s; }
-.scrollbar-thumb:hover, .scrollbar-thumb.dragging { width: 8px; background: #66bbff; }
+.scrollbar-thumb { position: absolute; right: 2px; width: 6px; height: 50px; background: #3a9affcc; border-radius: 20px; box-shadow: 0 0 18px #0088ff; border: 1px solid #aad0ff; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -282,22 +232,20 @@ body { display: flex; flex-direction: column; position: relative; }
 <!-- التطبيق الرئيسي -->
 <div id="mainApp" class="main-app" style="display: none;">
   <div class="app-container">
-    <!-- صفحة المحادثة (مع Live Reply المدمج) -->
+    <!-- صفحة المحادثة -->
     <div id="chatPage" class="page active">
       <div class="chat-header"><h1>RX__DZ</h1><p>أهلاً بك في البث المباشر</p></div>
       <div class="data-card"><div class="info-row"><span>ID :</span><span class="rainbow">RD714083</span></div><div class="info-row"><span>PASS :</span><span class="rainbow">1234</span></div></div>
 
-      <!-- قسم Live Reply -->
+      <!-- Live Reply Section -->
       <div class="live-reply-section">
-        <div class="section-header"><span class="icon">🎙️</span> الردود الصوتية السريعة</div>
+        <div class="section-header"><span>🎙️</span> الردود الصوتية السريعة</div>
 
-        <!-- Pills -->
         <div class="pills">
           <div class="pill active" id="livePillTts"><div class="pill-icon">🔊</div><div class="pill-info"><span class="pill-label">الصوت</span><span class="pill-value" id="liveTtsStatus">مفعّل</span></div></div>
           <div class="pill active" id="livePillSc"><div class="pill-icon">⚡</div><div class="pill-info"><span class="pill-label">الاختصارات</span><span class="pill-value" id="liveScStatus">مفعّلة</span></div></div>
         </div>
 
-        <!-- Textarea Card -->
         <div class="textarea-card">
           <div class="textarea-topbar"><span>✍️ اكتب ردك — Enter للنطق</span><span id="liveCharCount">0 حرف</span></div>
           <div class="speaking-bar" id="liveSpeakingBar"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
@@ -305,50 +253,36 @@ body { display: flex; flex-direction: column; position: relative; }
           <div class="font-ctrl-row"><label>🔡 حجم الخط</label><input type="range" id="liveFontSlider" min="14" max="44" value="22" style="flex:1;"><span class="font-size-display" id="liveFontDisplay">22px</span></div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="actions">
           <button class="btn-live btn-speak-live" id="liveSpeakBtn">▶️ نطق الآن</button>
           <button class="btn-live btn-clear-live" id="liveClearBtn">🗑️ مسح</button>
           <button class="btn-live btn-stop-live" id="liveStopBtn">⏹️ إيقاف الصوت</button>
         </div>
 
-        <!-- الاختصارات (قابل للطي) -->
         <div class="collapsible">
-          <div class="collapsible-header" id="liveScHeader">
-            <span class="collapsible-title"><span>⚡</span> قائمة الاختصارات</span>
-            <span class="collapsible-chevron" id="liveScChevron">▼</span>
-          </div>
-          <div class="collapsible-body" id="liveScBody">
-            <div class="collapsible-inner">
-              <div class="shortcut-list" id="liveShortcutList"></div>
-              <div class="add-shortcut">
-                <input type="text" id="liveScKey" placeholder="الكلمة المختصرة — مثال: سلام" maxlength="40">
-                <input type="text" id="liveScValue" placeholder="الجملة الكاملة — مثال: السلام عليكم..." maxlength="250">
-                <button class="btn-add-shortcut" id="liveAddScBtn">➕ إضافة اختصار</button>
-              </div>
+          <div class="collapsible-header" id="liveScHeader"><span class="collapsible-title"><span>⚡</span> قائمة الاختصارات</span><span class="collapsible-chevron" id="liveScChevron">▼</span></div>
+          <div class="collapsible-body" id="liveScBody"><div class="collapsible-inner">
+            <div class="shortcut-list" id="liveShortcutList"></div>
+            <div class="add-shortcut">
+              <input type="text" id="liveScKey" placeholder="الكلمة المختصرة — مثال: سلام" maxlength="40">
+              <input type="text" id="liveScValue" placeholder="الجملة الكاملة — مثال: السلام عليكم..." maxlength="250">
+              <button class="btn-add-shortcut" id="liveAddScBtn">➕ إضافة اختصار</button>
             </div>
-          </div>
+          </div></div>
         </div>
 
-        <!-- إعدادات الصوت (قابل للطي) -->
         <div class="collapsible">
-          <div class="collapsible-header" id="liveVcHeader">
-            <span class="collapsible-title"><span>🎚️</span> إعدادات الصوت</span>
-            <span class="collapsible-chevron" id="liveVcChevron">▼</span>
-          </div>
-          <div class="collapsible-body" id="liveVcBody">
-            <div class="collapsible-inner">
-              <div class="voice-grid">
-                <div class="voice-row"><label>السرعة <span id="liveRateVal">1.0×</span></label><input type="range" id="liveRateSlider" min="0.5" max="2" step="0.1" value="1.0"></div>
-                <div class="voice-row"><label>النبرة <span id="livePitchVal">1.0</span></label><input type="range" id="livePitchSlider" min="0.5" max="2" step="0.1" value="1.0"></div>
-                <div class="voice-row"><label>الحجم <span id="liveVolVal">100%</span></label><input type="range" id="liveVolSlider" min="0" max="1" step="0.05" value="1"></div>
-                <select class="voice-select" id="liveVoiceSelect"></select>
-              </div>
+          <div class="collapsible-header" id="liveVcHeader"><span class="collapsible-title"><span>🎚️</span> إعدادات الصوت</span><span class="collapsible-chevron" id="liveVcChevron">▼</span></div>
+          <div class="collapsible-body" id="liveVcBody"><div class="collapsible-inner">
+            <div class="voice-grid">
+              <div class="voice-row"><label>السرعة <span id="liveRateVal">1.0×</span></label><input type="range" id="liveRateSlider" min="0.5" max="2" step="0.1" value="1.0"></div>
+              <div class="voice-row"><label>النبرة <span id="livePitchVal">1.0</span></label><input type="range" id="livePitchSlider" min="0.5" max="2" step="0.1" value="1.0"></div>
+              <div class="voice-row"><label>الحجم <span id="liveVolVal">100%</span></label><input type="range" id="liveVolSlider" min="0" max="1" step="0.05" value="1"></div>
+              <select class="voice-select" id="liveVoiceSelect"></select>
             </div>
-          </div>
+          </div></div>
         </div>
       </div>
-
       <div style="height: 50px;"></div>
     </div>
 
@@ -360,10 +294,14 @@ body { display: flex; flex-direction: column; position: relative; }
       <button class="fab-create" id="createGroupBtn"><span>＋</span> مجموعة جديدة</button>
     </div>
   </div>
-  <nav class="bottom-nav" id="bottomNav"><button class="nav-item" data-page="chat"><span>💬</span>محادثة</button><button class="nav-item" data-page="gallery"><span>🖼️</span>معرض</button></nav>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-item active" data-page="chat"><span>💬</span>محادثة</button>
+    <button class="nav-item" data-page="gallery"><span>🖼️</span>معرض</button>
+  </nav>
   <button class="toggle-nav-btn" id="toggleNavBtn">👁️</button>
 
-  <!-- مودال إنشاء مجموعة -->
+  <!-- مودال مجموعة -->
   <div class="modal-overlay" id="groupModal">
     <div class="modal-sheet">
       <div class="modal-handle"></div>
@@ -377,340 +315,566 @@ body { display: flex; flex-direction: column; position: relative; }
   </div>
 
   <!-- عارض الصور -->
-  <div class="viewer" id="viewer"><div class="v-header"><button class="v-close" id="vClose">✕</button><span class="v-title" id="vTitle"></span><span class="v-counter" id="vCnt"></span></div><div class="v-stage" id="vstage"><img class="v-img" id="vImg" src=""></div><div class="v-footer"><button class="v-nav" id="prevBtn">→</button><div class="v-strip" id="vStrip"></div><button class="v-nav" id="nextBtn">←</button></div></div>
+  <div class="viewer" id="viewer">
+    <div class="v-header"><button class="v-close" id="vClose">✕</button><span class="v-title" id="vTitle"></span><span class="v-counter" id="vCnt"></span></div>
+    <div class="v-stage" id="vstage"><img class="v-img" id="vImg" src=""></div>
+    <div class="v-footer"><button class="v-nav" id="prevBtn">→</button><div class="v-strip" id="vStrip"></div><button class="v-nav" id="nextBtn">←</button></div>
+  </div>
 </div>
 
 <div id="customScrollbar" class="custom-scrollbar"><div id="scrollbarThumb" class="scrollbar-thumb"></div></div>
 
 <script>
-// ======================== إعدادات الأمان ========================
-const ENC_USER = "VEVTVCBEWiBDT0Q=", ENC_PASS = "RHpBUksyMDAkJA==";
-const MAX_ATTEMPTS = 3, LOCKOUT_TIME = 30, SESSION_TIME = 120;
-let failedAttempts = 0, lockoutUntil = null, inactivityTimer, countdownInterval;
+(function(){
+  "use strict";
 
-function b64(s) { return btoa(unescape(encodeURIComponent(s))); }
-function setSession(active) { if (active) { sessionStorage.setItem('auth','true'); sessionStorage.setItem('username','TEST DZ COD'); updateActivity(); } else { sessionStorage.removeItem('auth'); sessionStorage.removeItem('username'); sessionStorage.removeItem('lastActivity'); } }
-function updateActivity() { sessionStorage.setItem('lastActivity', Date.now()); }
-function isSessionValid() { if (sessionStorage.getItem('auth') !== 'true') return false; return (Date.now() - parseInt(sessionStorage.getItem('lastActivity')||0)) < SESSION_TIME*1000; }
-function resetInactivity() { updateActivity(); clearTimeout(inactivityTimer); inactivityTimer = setTimeout(() => performLogout('انتهت الجلسة لعدم النشاط'), SESSION_TIME*1000); }
-function performLogout(msg) { setSession(false); loginScreen.classList.remove('hidden'); mainApp.style.display='none'; loginMessage.textContent=msg; clearTimeout(inactivityTimer); updateLockUI(); }
-function loadLockState() { let stored = localStorage.getItem('rx_lockout'); if(stored) { lockoutUntil=parseInt(stored); if(Date.now()>=lockoutUntil) { lockoutUntil=null; localStorage.removeItem('rx_lockout'); failedAttempts=0; } else failedAttempts=MAX_ATTEMPTS; } else failedAttempts = parseInt(localStorage.getItem('rx_failed')||0); }
-function incFailed() { failedAttempts++; localStorage.setItem('rx_failed',failedAttempts); if(failedAttempts>=MAX_ATTEMPTS) { lockoutUntil=Date.now()+LOCKOUT_TIME*1000; localStorage.setItem('rx_lockout',lockoutUntil); startCountdown(); } }
-function clearFailed() { failedAttempts=0; localStorage.removeItem('rx_failed'); lockoutUntil=null; localStorage.removeItem('rx_lockout'); }
-function isLocked() { if(!lockoutUntil) return false; if(Date.now()>=lockoutUntil) { clearFailed(); return false; } return true; }
-function getLockRemaining() { return lockoutUntil ? Math.ceil((lockoutUntil-Date.now())/1000) : 0; }
-function startCountdown() { clearInterval(countdownInterval); countdownInterval=setInterval(()=>{ let r=getLockRemaining(); if(r<=0) { clearInterval(countdownInterval); lockoutTimerDiv.textContent=''; loginBtn.disabled=false; clearFailed(); } else { lockoutTimerDiv.textContent=`⏳ محظور ${r} ثانية`; loginBtn.disabled=true; } },200); }
-function updateLockUI() { if(isLocked()) { loginBtn.disabled=true; lockoutTimerDiv.textContent=`⏳ محظور ${getLockRemaining()} ثانية`; startCountdown(); } else { loginBtn.disabled=false; lockoutTimerDiv.textContent=''; } }
+  // ======================== الأمان ========================
+  const ENC_USER = "VEVTVCBEWiBDT0Q=", ENC_PASS = "RHpBUksyMDAkJA==";
+  const MAX_ATTEMPTS = 3, LOCKOUT_TIME = 30, SESSION_TIME = 120;
+  let failedAttempts = 0, lockoutUntil = null, inactivityTimer, countdownInterval;
 
-const loginScreen=document.getElementById('loginScreen'), mainApp=document.getElementById('mainApp');
-const loginForm=document.getElementById('loginForm'), username=document.getElementById('username'), password=document.getElementById('password');
-const togglePass=document.getElementById('togglePassword'), loginBtn=document.getElementById('loginBtn'), loginMessage=document.getElementById('loginMessage'), lockoutTimerDiv=document.getElementById('lockoutTimer');
-
-loginForm.addEventListener('submit', e=>{ e.preventDefault(); if(isLocked()){ updateLockUI(); return; } let u=username.value.trim(), p=password.value; if(!u||!p) { loginMessage.textContent='أدخل البيانات'; return; } if(b64(u)===ENC_USER && b64(p)===ENC_PASS) { clearFailed(); setSession(true); loginScreen.classList.add('hidden'); mainApp.style.display='flex'; loginMessage.textContent=''; resetInactivity(); loadGroups(); switchPage('chat'); } else { incFailed(); let rem=MAX_ATTEMPTS-failedAttempts; if(failedAttempts>=MAX_ATTEMPTS) { updateLockUI(); loginMessage.textContent='تم القفل مؤقتاً'; } else loginMessage.textContent=`خطأ، متبقي ${rem} محاولات`; password.value=''; } });
-togglePass.addEventListener('click', ()=>{ password.type = password.type==='password'?'text':'password'; togglePass.textContent = password.type==='password'?'👁️':'🙈'; });
-['mousemove','keydown','click','scroll','touchstart'].forEach(ev=> document.addEventListener(ev, ()=>{ if(sessionStorage.getItem('auth')==='true') resetInactivity(); }));
-window.addEventListener('load', ()=>{ loadLockState(); if(isSessionValid()) { loginScreen.classList.add('hidden'); mainApp.style.display='flex'; resetInactivity(); loadGroups(); switchPage('chat'); } else { setSession(false); loginScreen.classList.remove('hidden'); mainApp.style.display='none'; updateLockUI(); } startBgEffects(); initCustomScrollbar(); initLiveReply(); });
-
-// ======================== منطق التطبيق (معرض + تنقل) ========================
-let groups=[], tempImages=[], curGroup, curIdx, db; const DB='GalleryDB', STORE='groups';
-function startBgEffects(){
-  setInterval(()=>{ let s=document.createElement('div'); s.className='spark'; s.style.left=Math.random()*100+'%'; s.style.width=s.style.height=(Math.random()*4+2)+'px'; s.style.animationDuration=(Math.random()*2+1.5)+'s'; document.body.appendChild(s); setTimeout(()=>s.remove(),3000); },150);
-  let msgs=["👆 لا تنسَ اللايك","🔔 فعّل المتابعة","📢 انشر البث","💬 تفاعل","🎁 هدية للشروط","🚀 شارك للترند","👑 VIP","❤️ الدعم يرفع","📈 اضغط للتفاعل"];
-  setInterval(()=>{ let el=document.createElement('div'); el.className='floater'; el.textContent=msgs[Math.floor(Math.random()*msgs.length)]; el.style.left=Math.random()*90+5+'%'; let d=Math.random()*7+8; el.style.animationDuration=d+'s'; document.body.appendChild(el); setTimeout(()=>el.remove(),d*1000); },2200);
-}
-const pages={chat:document.getElementById('chatPage'), gallery:document.getElementById('galleryPage')}, navItems=document.querySelectorAll('.nav-item'), bottomNav=document.getElementById('bottomNav'), toggleNavBtn=document.getElementById('toggleNavBtn');
-function switchPage(id){ Object.values(pages).forEach(p=>p.classList.remove('active')); pages[id].classList.add('active'); navItems.forEach(i=>i.classList.toggle('active', i.dataset.page===id)); if(id==='gallery') renderGroups(); }
-navItems.forEach(i=>i.addEventListener('click', ()=>switchPage(i.dataset.page))); toggleNavBtn.addEventListener('click', ()=>{ bottomNav.classList.toggle('hidden'); toggleNavBtn.textContent=bottomNav.classList.contains('hidden')?'👁️‍🗨️':'👁️'; });
-function toast(msg){ let t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2600); }
-function setLoader(p){ let l=document.getElementById('loader'); l.style.width=p+'%'; if(p>=100) setTimeout(()=>l.style.width='0%',300); }
-function fileToBase64(file){ return new Promise((resolve,reject)=>{ let reader=new FileReader(); reader.onload=()=>resolve(reader.result); reader.onerror=reject; reader.readAsDataURL(file); }); }
-
-async function openDB(){ return new Promise((res,rej)=>{ let req=indexedDB.open(DB,1); req.onupgradeneeded=e=>{ if(!e.target.result.objectStoreNames.contains(STORE)) e.target.result.createObjectStore(STORE,{keyPath:'id'}); }; req.onsuccess=e=>{ db=e.target.result; res(db); }; req.onerror=()=>rej(req.error); }); }
-const dbAll=()=>new Promise((r,j)=>{ let q=db.transaction(STORE,'readonly').objectStore(STORE).getAll(); q.onsuccess=()=>r(q.result); q.onerror=()=>j(q.error); });
-const dbPut=item=>new Promise((r,j)=>{ let q=db.transaction(STORE,'readwrite').objectStore(STORE).put(item); q.onsuccess=()=>r(); q.onerror=()=>j(q.error); });
-const dbDel=id=>new Promise((r,j)=>{ let q=db.transaction(STORE,'readwrite').objectStore(STORE).delete(id); q.onsuccess=()=>r(); q.onerror=()=>j(q.error); });
-
-async function loadGroups(){ try{ setLoader(30); await openDB(); groups=await dbAll(); setLoader(70); renderGroups(); setLoader(100); } catch(e){ toast('خطأ في تحميل المعرض'); } }
-async function saveGroup(group){ await dbPut(group); groups=groups.filter(g=>g.id!==group.id); groups.push(group); renderGroups(); toast('تم حفظ المجموعة'); }
-async function deleteGroup(id){ await dbDel(id); groups=groups.filter(g=>g.id!==id); renderGroups(); toast('تم الحذف'); }
-
-function renderGroups(){
-  let grid=document.getElementById('cardsGrid'), empty=document.getElementById('emptyState'), badge=document.getElementById('groupCount');
-  let total=groups.length; badge.textContent=total+' '+(total===1?'مجموعة':'مجموعات');
-  if(total===0){ empty.style.display='block'; grid.style.display='none'; return; }
-  empty.style.display='none'; grid.style.display='grid';
-  let html=''; groups.forEach(g=>{ let name=g.name||'مجموعة', count=g.images.length, first=g.images[0]||'';
-    html+=`<div class="card" data-id="${g.id}"><div class="tw">${first?`<img class="card-thumb" src="${first}">`:`<div style="display:flex;align-items:center;justify-content:center;height:100%;">🖼️</div>`}</div><div class="card-body"><div class="card-name">${name}</div><div class="card-meta">${count} صورة</div></div><span class="card-badge">${count}</span><span class="card-del" data-del="${g.id}">🗑️</span></div>`;
-  });
-  grid.innerHTML=html;
-  document.querySelectorAll('.card').forEach(c=>{ c.addEventListener('click',e=>{ if(!e.target.classList.contains('card-del')) openViewer(c.dataset.id); }); });
-  document.querySelectorAll('.card-del').forEach(d=>{ d.addEventListener('click',e=>{ e.stopPropagation(); if(confirm('حذف المجموعة؟')) deleteGroup(d.dataset.del); }); });
-}
-
-const modal=document.getElementById('groupModal'), nameInp=document.getElementById('groupNameInput'), previewGrid=document.getElementById('previewGrid'), emptyMsg=document.getElementById('emptyPreviewMsg'), saveBtn=document.getElementById('saveGroupBtn'), cancelBtn=document.getElementById('cancelGroupBtn'), createBtn=document.getElementById('createGroupBtn'), dropZone=document.getElementById('dropZone');
-const urlInput=document.getElementById('imageUrlInput'), addUrlBtn=document.getElementById('addUrlBtn');
-
-function closeModal(){ modal.classList.remove('open'); tempImages=[]; }
-function openModal(){ tempImages=[]; nameInp.value=''; urlInput.value=''; updatePreview(); modal.classList.add('open'); }
-createBtn.addEventListener('click', openModal);
-cancelBtn.addEventListener('click', closeModal);
-modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
-
-function updatePreview(){
-  previewGrid.innerHTML='';
-  if(tempImages.length===0){ emptyMsg.style.display='block'; previewGrid.style.display='none'; return; }
-  emptyMsg.style.display='none'; previewGrid.style.display='grid';
-  tempImages.forEach((url,i)=>{ let div=document.createElement('div'); div.className='preview-item'; div.innerHTML=`<img src="${url}"><span class="preview-del" data-index="${i}">✕</span>`; previewGrid.appendChild(div); });
-  document.querySelectorAll('.preview-del').forEach(b=>{ b.addEventListener('click', e=>{ e.stopPropagation(); tempImages.splice(b.dataset.index,1); updatePreview(); }); });
-}
-function addImageFromUrl(url) { if (!url) return toast('أدخل رابط الصورة'); tempImages.push(url); updatePreview(); toast('تمت إضافة الصورة'); urlInput.value = ''; }
-addUrlBtn.addEventListener('click', () => addImageFromUrl(urlInput.value.trim()));
-urlInput.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); addUrlBtn.click(); } });
-function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
-['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => dropZone.addEventListener(ev, preventDefaults, false));
-dropZone.addEventListener('dragover', () => dropZone.classList.add('drag-over'));
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop', async (e) => {
-  dropZone.classList.remove('drag-over');
-  const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-  if (!files.length) return;
-  setLoader(20);
-  try { for (const file of files) { const b64 = await fileToBase64(file); tempImages.push(b64); } updatePreview(); toast(`تمت إضافة ${files.length} صورة`); } catch (err) { toast('فشل تحميل الصور'); }
-  setLoader(100);
-});
-saveBtn.addEventListener('click', async ()=>{ if(!tempImages.length){ toast('أضف صورة واحدة على الأقل'); return; } let group={ id: Date.now().toString(36)+Math.random().toString(36), name: nameInp.value.trim()||'مجموعة '+new Date().toLocaleDateString('ar'), images: tempImages.slice(), createdAt: Date.now() }; await saveGroup(group); closeModal(); });
-
-const viewer=document.getElementById('viewer'), vImg=document.getElementById('vImg'), vTitle=document.getElementById('vTitle'), vCnt=document.getElementById('vCnt'), vStrip=document.getElementById('vStrip'), prevBtn=document.getElementById('prevBtn'), nextBtn=document.getElementById('nextBtn'), vClose=document.getElementById('vClose');
-function openViewer(id){ let g=groups.find(g=>g.id===id); if(!g||!g.images.length) return; curGroup=g; curIdx=0; viewer.classList.add('open'); updateViewer(); renderStrip(); }
-function closeViewer(){ viewer.classList.remove('open'); }
-function updateViewer(){ vImg.src=curGroup.images[curIdx]; vTitle.textContent=curGroup.name; vCnt.textContent=`${curIdx+1} / ${curGroup.images.length}`; prevBtn.disabled=curIdx===0; nextBtn.disabled=curIdx===curGroup.images.length-1; document.querySelectorAll('.v-thumb').forEach((t,i)=>t.classList.toggle('active',i===curIdx)); }
-function renderStrip(){ let html=''; curGroup.images.forEach((src,i)=>html+=`<img class="v-thumb ${i===curIdx?'active':''}" src="${src}" data-idx="${i}">`); vStrip.innerHTML=html; vStrip.querySelectorAll('.v-thumb').forEach(t=>t.addEventListener('click', ()=>{ curIdx=+t.dataset.idx; updateViewer(); renderStrip(); })); }
-function nextImage(){ if(curIdx<curGroup.images.length-1){ curIdx++; updateViewer(); renderStrip(); } }
-function prevImage(){ if(curIdx>0){ curIdx--; updateViewer(); renderStrip(); } }
-prevBtn.addEventListener('click', prevImage); nextBtn.addEventListener('click', nextImage);
-vClose.addEventListener('click', closeViewer);
-viewer.addEventListener('click', e=>{ if(e.target===viewer) closeViewer(); });
-window.addEventListener('keydown', e=>{ if(!viewer.classList.contains('open')) return; if(e.key==='ArrowRight') prevImage(); else if(e.key==='ArrowLeft') nextImage(); else if(e.key==='Escape') closeViewer(); });
-let touchX=0; document.getElementById('vstage').addEventListener('touchstart', e=>{ touchX=e.changedTouches[0].clientX; },{passive:true});
-document.getElementById('vstage').addEventListener('touchend', e=>{ if(!curGroup) return; let d=e.changedTouches[0].clientX-touchX; if(Math.abs(d)<50) return; d>0?prevImage():nextImage(); });
-
-function initCustomScrollbar(){
-  const bar=document.getElementById('customScrollbar'), thumb=document.getElementById('scrollbarThumb');
-  let hideTimeout, isDragging=false;
-  function getActiveContainer(){ return document.querySelector('.page.active') || document.scrollingElement; }
-  function updateThumb(){
-    let container=getActiveContainer(); if(!container) return;
-    let sh=container.scrollHeight, ch=container.clientHeight, st=container.scrollTop;
-    if(sh<=ch) { bar.classList.remove('visible'); return; }
-    let thumbH=Math.max(40, (ch/sh)*ch), thumbTop=(st/(sh-ch))*(ch-thumbH);
-    thumb.style.height=thumbH+'px'; thumb.style.transform=`translateY(${thumbTop}px)`; bar.classList.add('visible');
-    clearTimeout(hideTimeout); hideTimeout=setTimeout(()=>{ if(!isDragging) bar.classList.remove('visible'); },1000);
+  function b64(s) { return btoa(unescape(encodeURIComponent(s))); }
+  function setSession(active) {
+    if (active) { sessionStorage.setItem('auth','true'); sessionStorage.setItem('username','TEST DZ COD'); updateActivity(); }
+    else { sessionStorage.removeItem('auth'); sessionStorage.removeItem('username'); sessionStorage.removeItem('lastActivity'); }
   }
-  function scrollTo(y){
-    let container=getActiveContainer(); if(!container) return;
-    let rect=bar.getBoundingClientRect(), thumbH=thumb.offsetHeight, maxTop=rect.height-thumbH;
-    let top=Math.min(maxTop, Math.max(0, y-rect.top-thumbH/2));
-    let ratio=top/maxTop, newScroll=ratio*(container.scrollHeight-container.clientHeight);
-    container.scrollTop=newScroll;
+  function updateActivity() { sessionStorage.setItem('lastActivity', Date.now()); }
+  function isSessionValid() {
+    if (sessionStorage.getItem('auth') !== 'true') return false;
+    return (Date.now() - parseInt(sessionStorage.getItem('lastActivity')||0)) < SESSION_TIME*1000;
   }
-  thumb.addEventListener('pointerdown', e=>{ e.preventDefault(); isDragging=true; thumb.classList.add('dragging'); document.addEventListener('pointermove', onDrag); document.addEventListener('pointerup', onDragEnd); });
-  function onDrag(e){ e.preventDefault(); scrollTo(e.clientY); }
-  function onDragEnd(){ isDragging=false; thumb.classList.remove('dragging'); document.removeEventListener('pointermove', onDrag); document.removeEventListener('pointerup', onDragEnd); }
-  bar.addEventListener('pointerdown', e=>{ if(e.target===bar) { scrollTo(e.clientY); updateThumb(); } });
-  document.addEventListener('scroll', ()=>{ if(document.querySelector('.page.active')) updateThumb(); }, {passive:true});
-  window.addEventListener('resize', updateThumb);
-  setTimeout(updateThumb, 80);
-}
-
-// ======================== دمج وظائف Live Reply ========================
-let liveTtsOn = true, liveScOn = true;
-let liveVoiceList = [], liveSelVoice = '';
-let liveVp = {rate:1.0, pitch:1.0, vol:1.0};
-let liveShortcuts = [];
-const LIVE_DEFAULT_SC = [
-  {k:'سلام', v:'السلام عليكم ورحمة الله وبركاته'},
-  {k:'وعليكم سلام', v:'وعليكم السلام ورحمة الله وبركاته، منورين'},
-  {k:'اهلا', v:'أهلا وسهلا بكم، نورتوا البث'},
-  {k:'شكرا', v:'شكرًا جزيلًا، ربي يعطيك العافية'},
-  {k:'هلا', v:'هلا وغلا، نورت البث'},
-  {k:'مشكور', v:'مشكور أخي الكريم، ربي يبارك فيك'},
-  {k:'بالتوفيق', v:'بالتوفيق والنجاح دائمًا إن شاء الله'},
-];
-
-let liveKeepAlive = null;
-const liveTa = document.getElementById('liveTextarea');
-const liveCharCount = document.getElementById('liveCharCount');
-const liveSpeakingBar = document.getElementById('liveSpeakingBar');
-const liveSpeakBtn = document.getElementById('liveSpeakBtn');
-const liveClearBtn = document.getElementById('liveClearBtn');
-const liveStopBtn = document.getElementById('liveStopBtn');
-const livePillTts = document.getElementById('livePillTts');
-const livePillSc = document.getElementById('livePillSc');
-const liveTtsStatus = document.getElementById('liveTtsStatus');
-const liveScStatus = document.getElementById('liveScStatus');
-const liveFontSlider = document.getElementById('liveFontSlider');
-const liveFontDisplay = document.getElementById('liveFontDisplay');
-const liveScHeader = document.getElementById('liveScHeader');
-const liveScBody = document.getElementById('liveScBody');
-const liveScChevron = document.getElementById('liveScChevron');
-const liveVcHeader = document.getElementById('liveVcHeader');
-const liveVcBody = document.getElementById('liveVcBody');
-const liveVcChevron = document.getElementById('liveVcChevron');
-const liveShortcutList = document.getElementById('liveShortcutList');
-const liveScKey = document.getElementById('liveScKey');
-const liveScValue = document.getElementById('liveScValue');
-const liveAddScBtn = document.getElementById('liveAddScBtn');
-const liveRateSlider = document.getElementById('liveRateSlider');
-const livePitchSlider = document.getElementById('livePitchSlider');
-const liveVolSlider = document.getElementById('liveVolSlider');
-const liveRateVal = document.getElementById('liveRateVal');
-const livePitchVal = document.getElementById('livePitchVal');
-const liveVolVal = document.getElementById('liveVolVal');
-const liveVoiceSelect = document.getElementById('liveVoiceSelect');
-
-function loadLiveSettings(){
-  try{
-    let s = localStorage.getItem('rxdz_live_sc');
-    liveShortcuts = s ? JSON.parse(s) : LIVE_DEFAULT_SC.map(x=>({k:x.k, v:x.v}));
-    liveTtsOn = localStorage.getItem('rxdz_live_tts') !== 'false';
-    liveScOn = localStorage.getItem('rxdz_live_sc_on') !== 'false';
-    let p = localStorage.getItem('rxdz_live_vp');
-    if(p) liveVp = Object.assign(liveVp, JSON.parse(p));
-    liveSelVoice = localStorage.getItem('rxdz_live_voice') || '';
-    let fs = localStorage.getItem('rxdz_live_fs');
-    if(fs){ liveTa.style.fontSize = fs+'px'; liveFontSlider.value = fs; liveFontDisplay.textContent = fs+'px'; }
-  }catch(e){ liveShortcuts = LIVE_DEFAULT_SC.map(x=>({k:x.k, v:x.v})); }
-  updateLivePills();
-  renderLiveShortcuts();
-  syncLiveSliders();
-}
-function saveLiveSettings(){
-  try{
-    localStorage.setItem('rxdz_live_sc', JSON.stringify(liveShortcuts));
-    localStorage.setItem('rxdz_live_tts', liveTtsOn);
-    localStorage.setItem('rxdz_live_sc_on', liveScOn);
-    localStorage.setItem('rxdz_live_vp', JSON.stringify(liveVp));
-    localStorage.setItem('rxdz_live_voice', liveSelVoice);
-  }catch(e){}
-}
-function updateLivePills(){
-  livePillTts.classList.toggle('active', liveTtsOn);
-  liveTtsStatus.textContent = liveTtsOn ? 'مفعّل' : 'معطّل';
-  livePillSc.classList.toggle('active', liveScOn);
-  liveScStatus.textContent = liveScOn ? 'مفعّلة' : 'معطّلة';
-}
-function syncLiveSliders(){
-  liveRateSlider.value = liveVp.rate; livePitchSlider.value = liveVp.pitch; liveVolSlider.value = liveVp.vol;
-  liveRateVal.textContent = liveVp.rate.toFixed(1)+'×';
-  livePitchVal.textContent = liveVp.pitch.toFixed(1);
-  liveVolVal.textContent = Math.round(liveVp.vol*100)+'%';
-}
-function loadLiveVoices(){
-  let v = speechSynthesis.getVoices();
-  if(v && v.length){ liveVoiceList = v; buildLiveVoiceSelect(); }
-}
-function buildLiveVoiceSelect(){
-  liveVoiceSelect.innerHTML = '';
-  let ar = liveVoiceList.filter(v=>v.lang.startsWith('ar'));
-  let ot = liveVoiceList.filter(v=>!v.lang.startsWith('ar'));
-  function addGrp(lbl, list){
-    if(!list.length) return;
-    let g = document.createElement('optgroup'); g.label = lbl;
-    list.forEach(v=>{ let o = document.createElement('option'); o.value = v.name; o.textContent = v.name+' ('+v.lang+')'; if(v.name===liveSelVoice) o.selected = true; g.appendChild(o); });
-    liveVoiceSelect.appendChild(g);
+  function resetInactivity() {
+    updateActivity();
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => performLogout('انتهت الجلسة لعدم النشاط'), SESSION_TIME*1000);
   }
-  addGrp('🎙 أصوات عربية', ar); addGrp('🌍 أخرى', ot);
-  if(!liveSelVoice && ar.length){ let best = ar.find(v=>/google|microsoft/i.test(v.name))||ar[0]; liveSelVoice = best.name; liveVoiceSelect.value = liveSelVoice; saveLiveSettings(); }
-  else if(liveSelVoice) liveVoiceSelect.value = liveSelVoice;
-}
-function getLiveVoice(){ return liveVoiceList.find(v=>v.name===liveSelVoice) || liveVoiceList.find(v=>v.lang.startsWith('ar')) || null; }
-function liveSpeak(txt){
-  if(!txt || !txt.trim()) return;
-  if(liveKeepAlive){ clearInterval(liveKeepAlive); liveKeepAlive = null; }
-  speechSynthesis.cancel();
-  setTimeout(()=>{
-    let u = new SpeechSynthesisUtterance(txt.trim());
-    u.lang = 'ar-SA'; u.rate = liveVp.rate; u.pitch = liveVp.pitch; u.volume = liveVp.vol;
-    let v = getLiveVoice(); if(v) u.voice = v;
-    u.onstart = ()=>{ liveSpeakingBar.classList.add('visible'); liveSpeakBtn.classList.add('speaking'); };
-    u.onend = u.onerror = ()=>{ liveSpeakingBar.classList.remove('visible'); liveSpeakBtn.classList.remove('speaking'); if(liveKeepAlive){ clearInterval(liveKeepAlive); liveKeepAlive=null; } };
-    speechSynthesis.speak(u);
-    liveKeepAlive = setInterval(()=>{ if(!speechSynthesis.speaking){ clearInterval(liveKeepAlive); liveKeepAlive=null; return; } speechSynthesis.pause(); speechSynthesis.resume(); }, 9000);
-  }, 50);
-}
-function liveStopSpeak(){ if(liveKeepAlive){ clearInterval(liveKeepAlive); liveKeepAlive=null; } speechSynthesis.cancel(); liveSpeakingBar.classList.remove('visible'); liveSpeakBtn.classList.remove('speaking'); }
-function applyLiveShortcut(text){ if(!liveScOn) return text; for(let s of liveShortcuts) if(text.trim() === s.k) return s.v; return text; }
-function checkLiveInline(){
-  if(!liveScOn) return;
-  let text = liveTa.value, pos = liveTa.selectionStart;
-  let before = text.slice(0, pos);
-  let parts = before.split(/[\s،.]+/);
-  let word = ''; for(let i=parts.length-1; i>=0; i--){ let w=parts[i].trim(); if(w){ word=w; break; } }
-  if(!word) return;
-  let sc = liveShortcuts.find(s=>s.k===word); if(!sc) return;
-  let idx = before.lastIndexOf(word); if(idx<0) return;
-  let newText = text.slice(0, idx) + sc.v + text.slice(idx+word.length);
-  liveTa.value = newText;
-  liveTa.setSelectionRange(idx+sc.v.length, idx+sc.v.length);
-  updateLiveCharCount();
-  if(liveTtsOn) liveSpeak(sc.v);
-  toast('⚡ اختصار: '+sc.k);
-}
-function renderLiveShortcuts(){
-  liveShortcutList.innerHTML = '';
-  if(!liveShortcuts.length){ liveShortcutList.innerHTML = '<div style="text-align:center;color:#8aa0c0;padding:10px">لا توجد اختصارات</div>'; return; }
-  liveShortcuts.forEach((sc,i)=>{
-    let d = document.createElement('div'); d.className = 'shortcut-item';
-    d.innerHTML = `<span class="shortcut-key">${sc.k}</span><span class="shortcut-arrow">←</span><span class="shortcut-value" title="${sc.v}">${sc.v}</span><button class="shortcut-del" data-i="${i}">✕</button>`;
-    liveShortcutList.appendChild(d);
-  });
-}
-function updateLiveCharCount(){ liveCharCount.textContent = liveTa.value.length + ' حرف'; }
-
-function initLiveReply(){
-  loadLiveSettings();
-  if(typeof speechSynthesis !== 'undefined'){
-    loadLiveVoices();
-    speechSynthesis.onvoiceschanged = loadLiveVoices;
-    setTimeout(loadLiveVoices, 600);
+  function performLogout(msg) {
+    setSession(false);
+    loginScreen.classList.remove('hidden');
+    mainApp.style.display = 'none';
+    loginMessage.textContent = msg;
+    clearTimeout(inactivityTimer);
+    updateLockUI();
   }
-  liveTa.addEventListener('input', updateLiveCharCount);
-  liveTa.addEventListener('focus', ()=>liveTa.closest('.textarea-card').style.borderColor='#00aaff');
-  liveTa.addEventListener('blur', ()=>liveTa.closest('.textarea-card').style.borderColor='#2a5a8a');
-  liveTa.addEventListener('keydown', e=>{
-    if(e.key==='Enter' && !e.shiftKey){
-      e.preventDefault();
-      let txt = liveTa.value.trim(); if(!txt) return;
-      let rep = applyLiveShortcut(txt);
-      liveTa.value = ''; updateLiveCharCount();
-      if(liveTtsOn){ liveSpeak(rep); toast('🔊 جاري النطق...'); }
+  function loadLockState() {
+    let stored = localStorage.getItem('rx_lockout');
+    if(stored) {
+      lockoutUntil = parseInt(stored);
+      if(Date.now() >= lockoutUntil) { lockoutUntil = null; localStorage.removeItem('rx_lockout'); failedAttempts = 0; }
+      else failedAttempts = MAX_ATTEMPTS;
+    } else failedAttempts = parseInt(localStorage.getItem('rx_failed')||0);
+  }
+  function incFailed() {
+    failedAttempts++;
+    localStorage.setItem('rx_failed', failedAttempts);
+    if(failedAttempts >= MAX_ATTEMPTS) {
+      lockoutUntil = Date.now() + LOCKOUT_TIME*1000;
+      localStorage.setItem('rx_lockout', lockoutUntil);
+      startCountdown();
+    }
+  }
+  function clearFailed() { failedAttempts = 0; localStorage.removeItem('rx_failed'); lockoutUntil = null; localStorage.removeItem('rx_lockout'); }
+  function isLocked() {
+    if(!lockoutUntil) return false;
+    if(Date.now() >= lockoutUntil) { clearFailed(); return false; }
+    return true;
+  }
+  function getLockRemaining() { return lockoutUntil ? Math.ceil((lockoutUntil - Date.now())/1000) : 0; }
+  function startCountdown() {
+    clearInterval(countdownInterval);
+    countdownInterval = setInterval(() => {
+      let r = getLockRemaining();
+      if(r <= 0) { clearInterval(countdownInterval); lockoutTimerDiv.textContent = ''; loginBtn.disabled = false; clearFailed(); }
+      else { lockoutTimerDiv.textContent = `⏳ محظور ${r} ثانية`; loginBtn.disabled = true; }
+    }, 200);
+  }
+  function updateLockUI() {
+    if(isLocked()) { loginBtn.disabled = true; lockoutTimerDiv.textContent = `⏳ محظور ${getLockRemaining()} ثانية`; startCountdown(); }
+    else { loginBtn.disabled = false; lockoutTimerDiv.textContent = ''; }
+  }
+
+  const loginScreen = document.getElementById('loginScreen'), mainApp = document.getElementById('mainApp');
+  const loginForm = document.getElementById('loginForm'), username = document.getElementById('username'), password = document.getElementById('password');
+  const togglePass = document.getElementById('togglePassword'), loginBtn = document.getElementById('loginBtn'), loginMessage = document.getElementById('loginMessage'), lockoutTimerDiv = document.getElementById('lockoutTimer');
+
+  loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if(isLocked()) { updateLockUI(); return; }
+    let u = username.value.trim(), p = password.value;
+    if(!u || !p) { loginMessage.textContent = 'أدخل البيانات'; return; }
+    if(b64(u) === ENC_USER && b64(p) === ENC_PASS) {
+      clearFailed();
+      setSession(true);
+      loginScreen.classList.add('hidden');
+      mainApp.style.display = 'flex';
+      loginMessage.textContent = '';
+      resetInactivity();
+      loadGroups();
+      switchPage('chat');
+    } else {
+      incFailed();
+      let rem = MAX_ATTEMPTS - failedAttempts;
+      if(failedAttempts >= MAX_ATTEMPTS) { updateLockUI(); loginMessage.textContent = 'تم القفل مؤقتاً'; }
+      else loginMessage.textContent = `خطأ، متبقي ${rem} محاولات`;
+      password.value = '';
     }
   });
-  liveTa.addEventListener('keyup', e=>{ if(e.key===' '||e.key==='،'||e.key==='.') checkLiveInline(); });
-  livePillTts.addEventListener('click', ()=>{ liveTtsOn=!liveTtsOn; updateLivePills(); saveLiveSettings(); if(!liveTtsOn) liveStopSpeak(); toast(liveTtsOn?'🔊 الصوت مفعّل':'🔇 الصوت معطّل'); });
-  livePillSc.addEventListener('click', ()=>{ liveScOn=!liveScOn; updateLivePills(); saveLiveSettings(); toast(liveScOn?'⚡ الاختصارات مفعّلة':'⚡ الاختصارات معطّلة'); });
-  liveSpeakBtn.addEventListener('click', ()=>{ let txt=liveTa.value.trim(); if(!txt){ toast('⚠️ لا يوجد نص'); return; } liveSpeak(txt); toast('🔊 جاري النطق...'); });
-  liveClearBtn.addEventListener('click', ()=>{ liveTa.value=''; updateLiveCharCount(); liveStopSpeak(); liveTa.focus(); toast('🗑️ تم المسح'); });
-  liveStopBtn.addEventListener('click', ()=>{ liveStopSpeak(); toast('⏹️ تم الإيقاف'); });
-  liveFontSlider.addEventListener('input', function(){ let v=this.value; liveTa.style.fontSize=v+'px'; liveFontDisplay.textContent=v+'px'; localStorage.setItem('rxdz_live_fs', v); });
-  liveScHeader.addEventListener('click', ()=>{ liveScBody.classList.toggle('open'); liveScChevron.style.transform = liveScBody.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'; });
-  liveVcHeader.addEventListener('click', ()=>{ liveVcBody.classList.toggle('open'); liveVcChevron.style.transform = liveVcBody.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'; });
-  liveAddScBtn.addEventListener('click', ()=>{
-    let k = liveScKey.value.trim(), v = liveScValue.value.trim();
-    if(!k||!v){ toast('⚠️ املأ الحقلين'); return; }
-    if(liveShortcuts.find(s=>s.k===k)){ toast('⚠️ موجود مسبقاً'); return; }
-    liveShortcuts.push({k,v}); liveScKey.value=liveScValue.value=''; renderLiveShortcuts(); saveLiveSettings(); toast('✅ تمت الإضافة');
+  togglePass.addEventListener('click', () => {
+    password.type = password.type === 'password' ? 'text' : 'password';
+    togglePass.textContent = password.type === 'password' ? '👁️' : '🙈';
   });
-  liveShortcutList.addEventListener('click', e=>{
-    let btn = e.target.closest('.shortcut-del'); if(!btn) return;
-    let i = parseInt(btn.dataset.i); liveShortcuts.splice(i,1); renderLiveShortcuts(); saveLiveSettings(); toast('🗑️ تم الحذف');
+  ['mousemove','keydown','click','scroll','touchstart'].forEach(ev => document.addEventListener(ev, () => {
+    if(sessionStorage.getItem('auth') === 'true') resetInactivity();
+  }));
+
+  // ======================== تأثيرات خلفية ========================
+  function startBgEffects() {
+    setInterval(() => {
+      let s = document.createElement('div'); s.className = 'spark';
+      s.style.left = Math.random()*100+'%';
+      s.style.width = s.style.height = (Math.random()*4+2)+'px';
+      s.style.animationDuration = (Math.random()*2+1.5)+'s';
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 3000);
+    }, 150);
+    let msgs = ["👆 لا تنسَ اللايك","🔔 فعّل المتابعة","📢 انشر البث","💬 تفاعل","🎁 هدية للشروط","🚀 شارك للترند","👑 VIP","❤️ الدعم يرفع"];
+    setInterval(() => {
+      let el = document.createElement('div'); el.className = 'floater';
+      el.textContent = msgs[Math.floor(Math.random()*msgs.length)];
+      el.style.left = Math.random()*90+5+'%';
+      let d = Math.random()*7+8;
+      el.style.animationDuration = d+'s';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), d*1000);
+    }, 2200);
+  }
+
+  // ======================== التنقل ========================
+  const pages = { chat: document.getElementById('chatPage'), gallery: document.getElementById('galleryPage') };
+  const navItems = document.querySelectorAll('.nav-item');
+  const bottomNav = document.getElementById('bottomNav');
+  const toggleNavBtn = document.getElementById('toggleNavBtn');
+
+  function switchPage(id) {
+    Object.values(pages).forEach(p => p.classList.remove('active'));
+    pages[id].classList.add('active');
+    navItems.forEach(i => i.classList.toggle('active', i.dataset.page === id));
+    if(id === 'gallery') renderGroups();
+  }
+  navItems.forEach(i => i.addEventListener('click', () => switchPage(i.dataset.page)));
+  toggleNavBtn.addEventListener('click', () => {
+    bottomNav.classList.toggle('hidden');
+    toggleNavBtn.textContent = bottomNav.classList.contains('hidden') ? '👁️‍🗨️' : '👁️';
   });
-  liveRateSlider.addEventListener('input', function(){ liveVp.rate=parseFloat(this.value); liveRateVal.textContent=liveVp.rate.toFixed(1)+'×'; saveLiveSettings(); });
-  livePitchSlider.addEventListener('input', function(){ liveVp.pitch=parseFloat(this.value); livePitchVal.textContent=liveVp.pitch.toFixed(1); saveLiveSettings(); });
-  liveVolSlider.addEventListener('input', function(){ liveVp.vol=parseFloat(this.value); liveVolVal.textContent=Math.round(liveVp.vol*100)+'%'; saveLiveSettings(); });
-  liveVoiceSelect.addEventListener('change', function(){ liveSelVoice=this.value; saveLiveSettings(); toast('🎙 تم تغيير الصوت'); });
-  updateLiveCharCount();
-}
+
+  function toast(msg) {
+    let t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('on');
+    setTimeout(() => t.classList.remove('on'), 2600);
+  }
+  function setLoader(p) {
+    let l = document.getElementById('loader');
+    l.style.width = p+'%';
+    if(p >= 100) setTimeout(() => l.style.width = '0%', 300);
+  }
+
+  // ======================== IndexedDB & Gallery ========================
+  let groups = [], tempImages = [], curGroup, curIdx, db;
+  const DB = 'GalleryDB', STORE = 'groups';
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  async function openDB() {
+    return new Promise((res, rej) => {
+      let req = indexedDB.open(DB, 1);
+      req.onupgradeneeded = e => { if(!e.target.result.objectStoreNames.contains(STORE)) e.target.result.createObjectStore(STORE, {keyPath:'id'}); };
+      req.onsuccess = e => { db = e.target.result; res(db); };
+      req.onerror = () => rej(req.error);
+    });
+  }
+  const dbAll = () => new Promise((r, j) => {
+    let q = db.transaction(STORE, 'readonly').objectStore(STORE).getAll();
+    q.onsuccess = () => r(q.result); q.onerror = () => j(q.error);
+  });
+  const dbPut = item => new Promise((r, j) => {
+    let q = db.transaction(STORE, 'readwrite').objectStore(STORE).put(item);
+    q.onsuccess = () => r(); q.onerror = () => j(q.error);
+  });
+  const dbDel = id => new Promise((r, j) => {
+    let q = db.transaction(STORE, 'readwrite').objectStore(STORE).delete(id);
+    q.onsuccess = () => r(); q.onerror = () => j(q.error);
+  });
+
+  async function loadGroups() {
+    try { setLoader(30); await openDB(); groups = await dbAll(); setLoader(70); renderGroups(); setLoader(100); }
+    catch(e) { toast('خطأ في تحميل المعرض'); }
+  }
+  async function saveGroup(group) { await dbPut(group); groups = groups.filter(g => g.id !== group.id); groups.push(group); renderGroups(); toast('تم حفظ المجموعة'); }
+  async function deleteGroup(id) { await dbDel(id); groups = groups.filter(g => g.id !== id); renderGroups(); toast('تم الحذف'); }
+
+  function renderGroups() {
+    let grid = document.getElementById('cardsGrid'), empty = document.getElementById('emptyState'), badge = document.getElementById('groupCount');
+    let total = groups.length;
+    badge.textContent = total + ' ' + (total === 1 ? 'مجموعة' : 'مجموعات');
+    if(total === 0) { empty.style.display = 'block'; grid.style.display = 'none'; return; }
+    empty.style.display = 'none'; grid.style.display = 'grid';
+    let html = '';
+    groups.forEach(g => {
+      let name = g.name || 'مجموعة', count = g.images.length, first = g.images[0] || '';
+      html += `<div class="card" data-id="${g.id}">${first?`<img class="card-thumb" src="${first}">`:`<div style="display:flex;align-items:center;justify-content:center;height:100%;">🖼️</div>`}<div class="card-body"><div class="card-name">${name}</div><div class="card-meta">${count} صورة</div></div><span class="card-badge">${count}</span><span class="card-del" data-del="${g.id}">🗑️</span></div>`;
+    });
+    grid.innerHTML = html;
+    document.querySelectorAll('.card').forEach(c => c.addEventListener('click', e => { if(!e.target.classList.contains('card-del')) openViewer(c.dataset.id); }));
+    document.querySelectorAll('.card-del').forEach(d => d.addEventListener('click', e => { e.stopPropagation(); if(confirm('حذف المجموعة؟')) deleteGroup(d.dataset.del); }));
+  }
+
+  const modal = document.getElementById('groupModal'), nameInp = document.getElementById('groupNameInput'), previewGrid = document.getElementById('previewGrid');
+  const emptyMsg = document.getElementById('emptyPreviewMsg'), saveBtn = document.getElementById('saveGroupBtn'), cancelBtn = document.getElementById('cancelGroupBtn');
+  const createBtn = document.getElementById('createGroupBtn'), dropZone = document.getElementById('dropZone');
+  const urlInput = document.getElementById('imageUrlInput'), addUrlBtn = document.getElementById('addUrlBtn');
+
+  function closeModal() { modal.classList.remove('open'); tempImages = []; }
+  function openModal() { tempImages = []; nameInp.value = ''; urlInput.value = ''; updatePreview(); modal.classList.add('open'); }
+  createBtn.addEventListener('click', openModal);
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+
+  function updatePreview() {
+    previewGrid.innerHTML = '';
+    if(tempImages.length === 0) { emptyMsg.style.display = 'block'; previewGrid.style.display = 'none'; return; }
+    emptyMsg.style.display = 'none'; previewGrid.style.display = 'grid';
+    tempImages.forEach((url, i) => {
+      let div = document.createElement('div'); div.className = 'preview-item';
+      div.innerHTML = `<img src="${url}"><span class="preview-del" data-index="${i}">✕</span>`;
+      previewGrid.appendChild(div);
+    });
+    document.querySelectorAll('.preview-del').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); tempImages.splice(b.dataset.index, 1); updatePreview(); }));
+  }
+  function addImageFromUrl(url) { if(!url) return toast('أدخل رابط الصورة'); tempImages.push(url); updatePreview(); toast('تمت إضافة الصورة'); urlInput.value = ''; }
+  addUrlBtn.addEventListener('click', () => addImageFromUrl(urlInput.value.trim()));
+  urlInput.addEventListener('keypress', e => { if(e.key === 'Enter') { e.preventDefault(); addUrlBtn.click(); } });
+  ['dragenter','dragover','dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, e => e.preventDefault()));
+  dropZone.addEventListener('dragover', () => dropZone.classList.add('drag-over'));
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', async e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    let files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+    if(!files.length) return;
+    setLoader(20);
+    try { for(let f of files) { tempImages.push(await fileToBase64(f)); } updatePreview(); toast(`تمت إضافة ${files.length} صورة`); }
+    catch(err) { toast('فشل تحميل الصور'); }
+    setLoader(100);
+  });
+  saveBtn.addEventListener('click', async () => {
+    if(!tempImages.length) { toast('أضف صورة واحدة على الأقل'); return; }
+    let group = { id: Date.now().toString(36)+Math.random().toString(36), name: nameInp.value.trim()||'مجموعة '+new Date().toLocaleDateString('ar'), images: tempImages.slice(), createdAt: Date.now() };
+    await saveGroup(group);
+    closeModal();
+  });
+
+  const viewer = document.getElementById('viewer'), vImg = document.getElementById('vImg'), vTitle = document.getElementById('vTitle'), vCnt = document.getElementById('vCnt');
+  const vStrip = document.getElementById('vStrip'), prevBtn = document.getElementById('prevBtn'), nextBtn = document.getElementById('nextBtn'), vClose = document.getElementById('vClose');
+  function openViewer(id) {
+    let g = groups.find(g => g.id === id);
+    if(!g || !g.images.length) return;
+    curGroup = g; curIdx = 0;
+    viewer.classList.add('open');
+    updateViewer();
+    renderStrip();
+  }
+  function closeViewer() { viewer.classList.remove('open'); }
+  function updateViewer() {
+    vImg.src = curGroup.images[curIdx];
+    vTitle.textContent = curGroup.name;
+    vCnt.textContent = `${curIdx+1} / ${curGroup.images.length}`;
+    prevBtn.disabled = curIdx === 0;
+    nextBtn.disabled = curIdx === curGroup.images.length - 1;
+    document.querySelectorAll('.v-thumb').forEach((t,i) => t.classList.toggle('active', i===curIdx));
+  }
+  function renderStrip() {
+    let html = '';
+    curGroup.images.forEach((src, i) => html += `<img class="v-thumb ${i===curIdx?'active':''}" src="${src}" data-idx="${i}">`);
+    vStrip.innerHTML = html;
+    vStrip.querySelectorAll('.v-thumb').forEach(t => t.addEventListener('click', () => { curIdx = +t.dataset.idx; updateViewer(); renderStrip(); }));
+  }
+  prevBtn.addEventListener('click', () => { if(curIdx > 0) { curIdx--; updateViewer(); renderStrip(); } });
+  nextBtn.addEventListener('click', () => { if(curIdx < curGroup.images.length-1) { curIdx++; updateViewer(); renderStrip(); } });
+  vClose.addEventListener('click', closeViewer);
+  viewer.addEventListener('click', e => { if(e.target === viewer) closeViewer(); });
+  window.addEventListener('keydown', e => { if(!viewer.classList.contains('open')) return; if(e.key==='ArrowRight') prevBtn.click(); else if(e.key==='ArrowLeft') nextBtn.click(); else if(e.key==='Escape') closeViewer(); });
+  let touchX = 0;
+  document.getElementById('vstage').addEventListener('touchstart', e => { touchX = e.changedTouches[0].clientX; }, {passive:true});
+  document.getElementById('vstage').addEventListener('touchend', e => {
+    if(!curGroup) return;
+    let d = e.changedTouches[0].clientX - touchX;
+    if(Math.abs(d) < 50) return;
+    d > 0 ? prevBtn.click() : nextBtn.click();
+  });
+
+  // ======================== شريط تمرير مخصص ========================
+  function initCustomScrollbar() {
+    const bar = document.getElementById('customScrollbar'), thumb = document.getElementById('scrollbarThumb');
+    let hideTimeout, isDragging = false;
+    function getActiveContainer() { return document.querySelector('.page.active') || document.scrollingElement; }
+    function updateThumb() {
+      let container = getActiveContainer(); if(!container) return;
+      let sh = container.scrollHeight, ch = container.clientHeight, st = container.scrollTop;
+      if(sh <= ch) { bar.classList.remove('visible'); return; }
+      let thumbH = Math.max(40, (ch/sh)*ch), thumbTop = (st/(sh-ch))*(ch - thumbH);
+      thumb.style.height = thumbH + 'px';
+      thumb.style.transform = `translateY(${thumbTop}px)`;
+      bar.classList.add('visible');
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => { if(!isDragging) bar.classList.remove('visible'); }, 1000);
+    }
+    function scrollTo(y) {
+      let container = getActiveContainer(); if(!container) return;
+      let rect = bar.getBoundingClientRect(), thumbH = thumb.offsetHeight, maxTop = rect.height - thumbH;
+      let top = Math.min(maxTop, Math.max(0, y - rect.top - thumbH/2));
+      let ratio = top / maxTop, newScroll = ratio * (container.scrollHeight - container.clientHeight);
+      container.scrollTop = newScroll;
+    }
+    thumb.addEventListener('pointerdown', e => { e.preventDefault(); isDragging = true; thumb.classList.add('dragging'); document.addEventListener('pointermove', onDrag); document.addEventListener('pointerup', onDragEnd); });
+    function onDrag(e) { e.preventDefault(); scrollTo(e.clientY); }
+    function onDragEnd() { isDragging = false; thumb.classList.remove('dragging'); document.removeEventListener('pointermove', onDrag); document.removeEventListener('pointerup', onDragEnd); }
+    bar.addEventListener('pointerdown', e => { if(e.target === bar) { scrollTo(e.clientY); updateThumb(); } });
+    document.addEventListener('scroll', () => { if(document.querySelector('.page.active')) updateThumb(); }, {passive: true});
+    window.addEventListener('resize', updateThumb);
+    setTimeout(updateThumb, 80);
+  }
+
+  // ======================== Live Reply (محسّن لـ WebView) ========================
+  let liveTtsOn = true, liveScOn = true;
+  let liveVoiceList = [], liveSelVoice = '';
+  let liveVp = { rate: 1.0, pitch: 1.0, vol: 1.0 };
+  let liveShortcuts = [];
+  const LIVE_DEFAULT_SC = [
+    {k:'سلام', v:'السلام عليكم ورحمة الله وبركاته'},
+    {k:'وعليكم سلام', v:'وعليكم السلام ورحمة الله وبركاته، منورين'},
+    {k:'اهلا', v:'أهلا وسهلا بكم، نورتوا البث'},
+    {k:'شكرا', v:'شكرًا جزيلًا، ربي يعطيك العافية'},
+    {k:'هلا', v:'هلا وغلا، نورت البث'},
+    {k:'مشكور', v:'مشكور أخي الكريم، ربي يبارك فيك'},
+    {k:'بالتوفيق', v:'بالتوفيق والنجاح دائمًا إن شاء الله'},
+  ];
+
+  let liveKeepAlive = null;
+  const liveTa = document.getElementById('liveTextarea');
+  const liveCharCount = document.getElementById('liveCharCount');
+  const liveSpeakingBar = document.getElementById('liveSpeakingBar');
+  const liveSpeakBtn = document.getElementById('liveSpeakBtn');
+  const liveClearBtn = document.getElementById('liveClearBtn');
+  const liveStopBtn = document.getElementById('liveStopBtn');
+  const livePillTts = document.getElementById('livePillTts');
+  const livePillSc = document.getElementById('livePillSc');
+  const liveTtsStatus = document.getElementById('liveTtsStatus');
+  const liveScStatus = document.getElementById('liveScStatus');
+  const liveFontSlider = document.getElementById('liveFontSlider');
+  const liveFontDisplay = document.getElementById('liveFontDisplay');
+  const liveScHeader = document.getElementById('liveScHeader');
+  const liveScBody = document.getElementById('liveScBody');
+  const liveScChevron = document.getElementById('liveScChevron');
+  const liveVcHeader = document.getElementById('liveVcHeader');
+  const liveVcBody = document.getElementById('liveVcBody');
+  const liveVcChevron = document.getElementById('liveVcChevron');
+  const liveShortcutList = document.getElementById('liveShortcutList');
+  const liveScKey = document.getElementById('liveScKey');
+  const liveScValue = document.getElementById('liveScValue');
+  const liveAddScBtn = document.getElementById('liveAddScBtn');
+  const liveRateSlider = document.getElementById('liveRateSlider');
+  const livePitchSlider = document.getElementById('livePitchSlider');
+  const liveVolSlider = document.getElementById('liveVolSlider');
+  const liveRateVal = document.getElementById('liveRateVal');
+  const livePitchVal = document.getElementById('livePitchVal');
+  const liveVolVal = document.getElementById('liveVolVal');
+  const liveVoiceSelect = document.getElementById('liveVoiceSelect');
+
+  function loadLiveSettings() {
+    try {
+      let s = localStorage.getItem('rxdz_live_sc');
+      liveShortcuts = s ? JSON.parse(s) : LIVE_DEFAULT_SC.map(x => ({k:x.k, v:x.v}));
+      liveTtsOn = localStorage.getItem('rxdz_live_tts') !== 'false';
+      liveScOn = localStorage.getItem('rxdz_live_sc_on') !== 'false';
+      let p = localStorage.getItem('rxdz_live_vp');
+      if(p) liveVp = Object.assign(liveVp, JSON.parse(p));
+      liveSelVoice = localStorage.getItem('rxdz_live_voice') || '';
+      let fs = localStorage.getItem('rxdz_live_fs');
+      if(fs) { liveTa.style.fontSize = fs+'px'; liveFontSlider.value = fs; liveFontDisplay.textContent = fs+'px'; }
+    } catch(e) { liveShortcuts = LIVE_DEFAULT_SC.map(x => ({k:x.k, v:x.v})); }
+    updateLivePills();
+    renderLiveShortcuts();
+    syncLiveSliders();
+  }
+  function saveLiveSettings() {
+    try {
+      localStorage.setItem('rxdz_live_sc', JSON.stringify(liveShortcuts));
+      localStorage.setItem('rxdz_live_tts', liveTtsOn);
+      localStorage.setItem('rxdz_live_sc_on', liveScOn);
+      localStorage.setItem('rxdz_live_vp', JSON.stringify(liveVp));
+      localStorage.setItem('rxdz_live_voice', liveSelVoice);
+    } catch(e) {}
+  }
+  function updateLivePills() {
+    livePillTts.classList.toggle('active', liveTtsOn);
+    liveTtsStatus.textContent = liveTtsOn ? 'مفعّل' : 'معطّل';
+    livePillSc.classList.toggle('active', liveScOn);
+    liveScStatus.textContent = liveScOn ? 'مفعّلة' : 'معطّلة';
+  }
+  function syncLiveSliders() {
+    liveRateSlider.value = liveVp.rate; livePitchSlider.value = liveVp.pitch; liveVolSlider.value = liveVp.vol;
+    liveRateVal.textContent = liveVp.rate.toFixed(1) + '×';
+    livePitchVal.textContent = liveVp.pitch.toFixed(1);
+    liveVolVal.textContent = Math.round(liveVp.vol * 100) + '%';
+  }
+
+  function ensureVoicesLoaded(callback) {
+    if (liveVoiceList.length > 0) { callback(); return; }
+    let voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length) {
+      liveVoiceList = voices;
+      buildLiveVoiceSelect();
+      callback();
+    } else {
+      window.speechSynthesis.onvoiceschanged = () => {
+        liveVoiceList = window.speechSynthesis.getVoices();
+        buildLiveVoiceSelect();
+        callback();
+      };
+    }
+  }
+  function buildLiveVoiceSelect() {
+    liveVoiceSelect.innerHTML = '';
+    let ar = liveVoiceList.filter(v => v.lang.startsWith('ar'));
+    let ot = liveVoiceList.filter(v => !v.lang.startsWith('ar'));
+    function addGrp(lbl, list) {
+      if(!list.length) return;
+      let g = document.createElement('optgroup'); g.label = lbl;
+      list.forEach(v => { let o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')'; if(v.name === liveSelVoice) o.selected = true; g.appendChild(o); });
+      liveVoiceSelect.appendChild(g);
+    }
+    addGrp('🎙 أصوات عربية', ar); addGrp('🌍 أخرى', ot);
+    if(!liveSelVoice && ar.length) { let best = ar.find(v => /google|microsoft/i.test(v.name)) || ar[0]; liveSelVoice = best.name; liveVoiceSelect.value = liveSelVoice; saveLiveSettings(); }
+    else if(liveSelVoice) liveVoiceSelect.value = liveSelVoice;
+  }
+  function getLiveVoice() { return liveVoiceList.find(v => v.name === liveSelVoice) || liveVoiceList.find(v => v.lang.startsWith('ar')) || null; }
+
+  function liveSpeak(txt) {
+    if (!liveTtsOn) return;
+    txt = txt.trim();
+    if (!txt) return;
+    if (liveKeepAlive) { clearInterval(liveKeepAlive); liveKeepAlive = null; }
+    window.speechSynthesis.cancel();
+    let utter = new SpeechSynthesisUtterance(txt);
+    utter.lang = 'ar-SA';
+    utter.rate = liveVp.rate;
+    utter.pitch = liveVp.pitch;
+    utter.volume = liveVp.vol;
+    let voice = getLiveVoice();
+    if (voice) utter.voice = voice;
+    utter.onstart = () => { liveSpeakingBar.classList.add('visible'); liveSpeakBtn.classList.add('speaking'); };
+    utter.onend = utter.onerror = () => { liveSpeakingBar.classList.remove('visible'); liveSpeakBtn.classList.remove('speaking'); if (liveKeepAlive) { clearInterval(liveKeepAlive); liveKeepAlive = null; } };
+    window.speechSynthesis.speak(utter);
+    liveKeepAlive = setInterval(() => { if (!window.speechSynthesis.speaking) { clearInterval(liveKeepAlive); liveKeepAlive = null; return; } window.speechSynthesis.pause(); window.speechSynthesis.resume(); }, 9000);
+  }
+  function liveStopSpeak() { if (liveKeepAlive) { clearInterval(liveKeepAlive); liveKeepAlive = null; } window.speechSynthesis.cancel(); liveSpeakingBar.classList.remove('visible'); liveSpeakBtn.classList.remove('speaking'); }
+
+  function applyLiveShortcut(text) { if(!liveScOn) return text; let trimmed = text.trim(); for(let s of liveShortcuts) if(trimmed === s.k) return s.v; return text; }
+  function checkLiveInline() {
+    if(!liveScOn) return;
+    let text = liveTa.value, pos = liveTa.selectionStart;
+    let before = text.slice(0, pos);
+    let parts = before.split(/[\s،.]+/);
+    let word = ''; for(let i=parts.length-1; i>=0; i--) { let w = parts[i].trim(); if(w) { word = w; break; } }
+    if(!word) return;
+    let sc = liveShortcuts.find(s => s.k === word); if(!sc) return;
+    let idx = before.lastIndexOf(word); if(idx < 0) return;
+    let newText = text.slice(0, idx) + sc.v + text.slice(idx+word.length);
+    liveTa.value = newText;
+    let newPos = idx + sc.v.length; liveTa.setSelectionRange(newPos, newPos);
+    updateLiveCharCount();
+    if(liveTtsOn) ensureVoicesLoaded(() => liveSpeak(sc.v));
+    toast('⚡ اختصار: ' + sc.k);
+  }
+  function renderLiveShortcuts() {
+    liveShortcutList.innerHTML = '';
+    if(!liveShortcuts.length) { liveShortcutList.innerHTML = '<div style="text-align:center;color:#8aa0c0;padding:10px">لا توجد اختصارات</div>'; return; }
+    liveShortcuts.forEach((sc, i) => {
+      let d = document.createElement('div'); d.className = 'shortcut-item';
+      d.innerHTML = `<span class="shortcut-key">${sc.k}</span><span class="shortcut-arrow">←</span><span class="shortcut-value" title="${sc.v}">${sc.v}</span><button class="shortcut-del" data-i="${i}">✕</button>`;
+      liveShortcutList.appendChild(d);
+    });
+  }
+  function updateLiveCharCount() { liveCharCount.textContent = liveTa.value.length + ' حرف'; }
+
+  function initLiveReply() {
+    loadLiveSettings();
+    liveTa.addEventListener('input', updateLiveCharCount);
+    liveTa.addEventListener('focus', () => liveTa.closest('.textarea-card').style.borderColor = '#00aaff');
+    liveTa.addEventListener('blur', () => liveTa.closest('.textarea-card').style.borderColor = '#2a5a8a');
+    liveTa.addEventListener('keydown', e => {
+      if(e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        let txt = liveTa.value.trim(); if(!txt) return;
+        let rep = applyLiveShortcut(txt);
+        liveTa.value = ''; updateLiveCharCount();
+        if(liveTtsOn) { ensureVoicesLoaded(() => liveSpeak(rep)); toast('🔊 جاري النطق...'); }
+      }
+    });
+    liveTa.addEventListener('keyup', e => { if(e.key === ' ' || e.key === '،' || e.key === '.') checkLiveInline(); });
+
+    livePillTts.addEventListener('click', () => { liveTtsOn = !liveTtsOn; updateLivePills(); saveLiveSettings(); if(!liveTtsOn) liveStopSpeak(); toast(liveTtsOn ? '🔊 الصوت مفعّل' : '🔇 الصوت معطّل'); });
+    livePillSc.addEventListener('click', () => { liveScOn = !liveScOn; updateLivePills(); saveLiveSettings(); toast(liveScOn ? '⚡ الاختصارات مفعّلة' : '⚡ الاختصارات معطّلة'); });
+    liveSpeakBtn.addEventListener('click', () => { let txt = liveTa.value.trim(); if(!txt) { toast('⚠️ لا يوجد نص'); return; } ensureVoicesLoaded(() => { liveSpeak(txt); toast('🔊 جاري النطق...'); }); });
+    liveClearBtn.addEventListener('click', () => { liveTa.value = ''; updateLiveCharCount(); liveStopSpeak(); liveTa.focus(); toast('🗑️ تم المسح'); });
+    liveStopBtn.addEventListener('click', () => { liveStopSpeak(); toast('⏹️ تم الإيقاف'); });
+    liveFontSlider.addEventListener('input', function() { let v = this.value; liveTa.style.fontSize = v + 'px'; liveFontDisplay.textContent = v + 'px'; try { localStorage.setItem('rxdz_live_fs', v); } catch(e) {} });
+    liveScHeader.addEventListener('click', () => { liveScBody.classList.toggle('open'); liveScChevron.style.transform = liveScBody.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'; });
+    liveVcHeader.addEventListener('click', () => { liveVcBody.classList.toggle('open'); liveVcChevron.style.transform = liveVcBody.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)'; });
+    liveAddScBtn.addEventListener('click', () => {
+      let k = liveScKey.value.trim(), v = liveScValue.value.trim();
+      if(!k || !v) { toast('⚠️ املأ الحقلين'); return; }
+      if(liveShortcuts.find(s => s.k === k)) { toast('⚠️ موجود مسبقاً'); return; }
+      liveShortcuts.push({k, v}); liveScKey.value = liveScValue.value = ''; renderLiveShortcuts(); saveLiveSettings(); toast('✅ تمت الإضافة');
+    });
+    liveShortcutList.addEventListener('click', e => {
+      let btn = e.target.closest('.shortcut-del'); if(!btn) return;
+      let i = parseInt(btn.dataset.i); liveShortcuts.splice(i, 1); renderLiveShortcuts(); saveLiveSettings(); toast('🗑️ تم الحذف');
+    });
+    liveRateSlider.addEventListener('input', function() { liveVp.rate = parseFloat(this.value); liveRateVal.textContent = liveVp.rate.toFixed(1) + '×'; saveLiveSettings(); });
+    livePitchSlider.addEventListener('input', function() { liveVp.pitch = parseFloat(this.value); livePitchVal.textContent = liveVp.pitch.toFixed(1); saveLiveSettings(); });
+    liveVolSlider.addEventListener('input', function() { liveVp.vol = parseFloat(this.value); liveVolVal.textContent = Math.round(liveVp.vol * 100) + '%'; saveLiveSettings(); });
+    liveVoiceSelect.addEventListener('change', function() { liveSelVoice = this.value; saveLiveSettings(); toast('🎙 تم تغيير الصوت'); });
+    updateLiveCharCount();
+  }
+
+  // ======================== بدء التشغيل ========================
+  window.addEventListener('load', () => {
+    loadLockState();
+    if(isSessionValid()) {
+      loginScreen.classList.add('hidden');
+      mainApp.style.display = 'flex';
+      resetInactivity();
+      loadGroups();
+      switchPage('chat');
+    } else {
+      setSession(false);
+      loginScreen.classList.remove('hidden');
+      mainApp.style.display = 'none';
+      updateLockUI();
+    }
+    startBgEffects();
+    initCustomScrollbar();
+    initLiveReply();
+  });
+})();
 </script>
 </body>
-</html>
+  </html>
